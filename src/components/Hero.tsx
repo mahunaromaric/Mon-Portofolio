@@ -2,7 +2,7 @@ import { ArrowRight, MapPin } from 'lucide-react'
 import { C } from '../constants'
 import { Btn } from './ui/Btn'
 import { Tag } from './ui/Tag'
-import profilImg from '../img/profil.png'
+import profilImg from '../img/profil.webp'
 
 const techs = ['React', 'Next.js', 'TypeScript', 'Laravel', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Figma']
 const stats = [
@@ -58,7 +58,8 @@ export function Hero() {
               <img
                 src={profilImg}
                 alt="Romaric Mahuna GBENOU — Développeur Full Stack"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
                 style={{ width: '100%', height: 400, objectFit: 'cover', display: 'block' }}
               />
               <div style={{
