@@ -4,11 +4,11 @@ import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
 import { Tag } from './ui/Tag'
 import { projects } from '../data'
-import ctaasImg from '../img/ctaas.png'
-import bibliofabImg from '../img/bibliofab.png'
-import beninImg from '../img/benin.png'
-import hemoImg from '../img/hemo.png'
-import shootingImg from '../img/shooting.png'
+import ctaasImg from '../img/ctaas.webp'
+import bibliofabImg from '../img/bibliofab.webp'
+import beninImg from '../img/benin.webp'
+import hemoImg from '../img/hemo.webp'
+import shootingImg from '../img/shooting.webp'
 
 function ProjectCard({ p, delay = 0 }: { p: Project; delay?: number }) {
   const [hov, setHov] = useState(false)
