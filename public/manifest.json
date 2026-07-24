@@ -1,0 +1,17 @@
+{
+  "name": "Romaric Mahuna GBENOU — Développeur Full Stack",
+  "short_name": "Mahuna",
+  "description": "Portfolio de Romaric Mahuna GBENOU, développeur Full Stack basé au Bénin.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#1E293B",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
