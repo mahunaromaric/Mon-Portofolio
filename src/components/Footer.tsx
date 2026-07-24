@@ -10,6 +10,8 @@ export function Footer() {
               <svg width="28" height="28" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M25 110V38L45 38C52 38 57 43 57 50C57 55 53 59 49 61L70 24L91 61C87 59 83 55 83 50C83 43 88 38 95 38L115 38V110" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M70 24L48 78M70 24L92 78" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 55L4 70L12 85" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M128 55L136 70L128 85" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.04em' }}>Mahuna</span>
             </div>
