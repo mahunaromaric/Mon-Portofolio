@@ -20,7 +20,9 @@ export function DashboardPage() {
       supabase.from('downloads').select('*').order('date', { ascending: false }).limit(30),
       supabase.from('messages').select('id', { count: 'exact', head: true }),
       supabase.from('messages').select('id', { count: 'exact', head: true }).eq('read', false),
-    ]).then(([vToday, vHist, dAll, dHist, msg, unr]) => {
+    ]).then((results) => {
+      const [vToday, vHist, dAll, dHist, msg, unr] = results
+      results.forEach((r, i) => { if (r.error) console.error(`Dashboard query #${i} failed:`, r.error) })
       setStats({
         viewsToday: (vToday.data as any[])?.reduce((s: number, r: any) => s + r.count, 0) ?? 0,
         views: vHist.data?.reduce((s: number, r: any) => s + r.count, 0) ?? 0,
