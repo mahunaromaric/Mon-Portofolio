@@ -1,15 +1,17 @@
 import { useLocation } from 'react-router-dom'
 import { supabase } from '../../supabase/client'
+import { LayoutDashboard, Folder, Zap, Calendar, FileText, Mail, TrendingUp } from 'lucide-react'
 import { C } from '../../constants'
 
+const iconSize = 16
 const navItems = [
-  { path: '/admin', label: 'Dashboard', icon: '📊' },
-  { path: '/admin/projects', label: 'Projets', icon: '📁' },
-  { path: '/admin/skills', label: 'Compétences', icon: '⚡' },
-  { path: '/admin/experiences', label: 'Expériences', icon: '📅' },
-  { path: '/admin/articles', label: 'Articles', icon: '📝' },
-  { path: '/admin/messages', label: 'Messages', icon: '✉️' },
-  { path: '/admin/analytics', label: 'Analytics', icon: '📈' },
+  { path: '/admin', label: 'Dashboard', icon: <LayoutDashboard size={iconSize} /> },
+  { path: '/admin/projects', label: 'Projets', icon: <Folder size={iconSize} /> },
+  { path: '/admin/skills', label: 'Compétences', icon: <Zap size={iconSize} /> },
+  { path: '/admin/experiences', label: 'Expériences', icon: <Calendar size={iconSize} /> },
+  { path: '/admin/articles', label: 'Articles', icon: <FileText size={iconSize} /> },
+  { path: '/admin/messages', label: 'Messages', icon: <Mail size={iconSize} /> },
+  { path: '/admin/analytics', label: 'Analytics', icon: <TrendingUp size={iconSize} /> },
 ]
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -36,7 +38,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                   borderRight: active ? `3px solid ${C.blue}` : '3px solid transparent',
                   transition: 'all 0.12s',
                 }}>
-                <span>{item.icon}</span>
+                {item.icon}
                 {item.label}
               </a>
             )

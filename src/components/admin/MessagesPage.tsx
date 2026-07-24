@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { X } from 'lucide-react'
 import { supabase } from '../../supabase/client'
 import { C } from '../../constants'
 import type { Database } from '../../supabase/schema'
@@ -97,7 +98,7 @@ function MessageRow({ msg, active, onClick, onDelete }: { msg: Message; active: 
       </div>
       <button onClick={e => { e.stopPropagation(); onDelete() }}
         style={{ padding: '3px 8px', background: 'transparent', color: '#94A3B8', border: 'none', borderRadius: 4, fontFamily: 'var(--font-sub)', fontSize: 11, cursor: 'pointer' }}>
-        ✕
+        <X size={12} strokeWidth={3} />
       </button>
     </div>
   )
