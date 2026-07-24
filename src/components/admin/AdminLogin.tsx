@@ -18,10 +18,12 @@ export function AdminLogin() {
   }
 
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F8F7F4' }}>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#F8F7F4' }}>
       <form onSubmit={login} style={{ background: '#fff', padding: '3rem', borderRadius: 20, width: '100%', maxWidth: 400, boxShadow: '0 4px 32px rgba(0,0,0,0.06)' }}>
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, letterSpacing: '-0.04em', color: C.ink, marginBottom: 4 }}>Connexion</h1>
-        <p style={{ fontFamily: 'var(--font-sub)', fontSize: 14, color: C.muted, marginBottom: '2rem' }}>Administration du portfolio</p>
+        <header style={{ marginBottom: '2rem' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, letterSpacing: '-0.04em', color: C.ink, marginBottom: 4 }}>Connexion</h1>
+          <p style={{ fontFamily: 'var(--font-sub)', fontSize: 14, color: C.muted }}>Administration du portfolio</p>
+        </header>
         {error && <p style={{ fontFamily: 'var(--font-sub)', fontSize: 13, color: '#DC2626', background: '#FEF2F2', padding: '8px 12px', borderRadius: 8, marginBottom: '1rem' }}>{error}</p>}
         <div style={{ marginBottom: '1rem' }}>
           <label htmlFor="login-email" style={{ fontFamily: 'var(--font-display)', fontSize: 12.5, fontWeight: 600, color: C.ink2, display: 'block', marginBottom: 6 }}>Email</label>
@@ -41,6 +43,13 @@ export function AdminLogin() {
           style={{ width: '100%', padding: '14px 12px', background: C.ink, color: '#fff', border: 'none', borderRadius: 10, fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700, cursor: 'pointer', opacity: busy ? 0.6 : 1, minHeight: 48 }}>
           {busy ? 'Connexion...' : 'Se connecter'}
         </button>
+        <nav style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+          <a href="/" style={{ fontFamily: 'var(--font-sub)', fontSize: 13, color: C.muted, textDecoration: 'none' }}
+            onMouseEnter={e => e.currentTarget.style.color = C.blue}
+            onMouseLeave={e => e.currentTarget.style.color = C.muted}>
+            ← Retour au portfolio
+          </a>
+        </nav>
       </form>
     </main>
   )
