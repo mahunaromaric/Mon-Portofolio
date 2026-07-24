@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../supabase/client'
+import { uploadImage } from '../../supabase/storage'
 import { C } from '../../constants'
 import type { Database } from '../../supabase/schema'
 
@@ -11,6 +12,8 @@ export function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [editing, setEditing] = useState<number | 'new' | null>(null)
   const [form, setForm] = useState(emptyForm)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   const load = async () => {
@@ -24,19 +27,31 @@ export function ProjectsPage() {
 
   const save = async () => {
     if (!supabase) return
+    let imageUrl: string | null = null
+    if (imageFile) {
+      const ext = imageFile.name.split('.').pop()
+      imageUrl = await uploadImage(imageFile, `projects/${Date.now()}.${ext}`)
+    }
     const payload = {
       ...form,
       tags: form.tags.split(',').map(s => s.trim()).filter(Boolean),
       focus: form.focus.split(',').map(s => s.trim()).filter(Boolean),
+      ...(imageUrl ? { image_url: imageUrl } : {}),
     }
     if (editing === 'new') {
       await supabase.from('projects').insert({ ...payload, published: false, sort_order: projects.length })
     } else {
       await supabase.from('projects').update(payload).eq('id', editing!)
     }
-    setEditing(null)
-    setForm(emptyForm)
+    setEditing(null); setForm(emptyForm); setImageFile(null); setImagePreview(null)
     load()
+  }
+
+  const openEdit = (p: Project) => {
+    setEditing(p.id)
+    setForm({ title: p.title, subtitle: p.subtitle, description: p.description, tags: p.tags.join(', '), focus: p.focus.join(', '), accent: p.accent })
+    setImagePreview(p.image_url)
+    setImageFile(null)
   }
 
   const remove = async (id: number) => {
@@ -86,6 +101,14 @@ export function ProjectsPage() {
                 style={{ width: '100%', padding: '10px 12px', borderRadius: 8, border: `1px solid ${C.border}`, fontFamily: 'var(--font-sans)', fontSize: 13, outline: 'none' }} />
             </div>
           ))}
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 600, color: C.ink2, display: 'block', marginBottom: 4 }}>Image</label>
+            <input type="file" accept="image/*" onChange={e => {
+              const f = e.target.files?.[0]
+              if (f) { setImageFile(f); setImagePreview(URL.createObjectURL(f)) }
+            }} style={{ fontFamily: 'var(--font-sans)', fontSize: 12 }} />
+            {imagePreview && <img src={imagePreview} alt="" style={{ width: 120, height: 80, objectFit: 'cover', borderRadius: 8, marginTop: 8 }} />}
+          </div>
           <div style={{ display: 'flex', gap: 8, marginTop: '1rem' }}>
             <button onClick={save} style={{ padding: '8px 20px', background: C.ink, color: '#fff', border: 'none', borderRadius: 8, fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Enregistrer</button>
             <button onClick={() => setEditing(null)} style={{ padding: '8px 20px', background: 'transparent', color: C.muted, border: `1px solid ${C.border}`, borderRadius: 8, fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
@@ -104,7 +127,7 @@ export function ProjectsPage() {
               <input type="checkbox" checked={p.published} onChange={e => toggle(p.id, e.target.checked)} />
               <span style={{ fontFamily: 'var(--font-sub)', fontSize: 12, color: C.muted }}>Publié</span>
             </label>
-            <button onClick={() => { setEditing(p.id); setForm({ title: p.title, subtitle: p.subtitle, description: p.description, tags: p.tags.join(', '), focus: p.focus.join(', '), accent: p.accent }) }}
+            <button onClick={() => openEdit(p)}
               style={{ padding: '5px 12px', background: 'transparent', color: C.blue, border: `1px solid ${C.blue}40`, borderRadius: 6, fontFamily: 'var(--font-sub)', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
               Modifier
             </button>

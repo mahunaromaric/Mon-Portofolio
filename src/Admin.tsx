@@ -8,6 +8,8 @@ import { ExperiencesPage } from './components/admin/ExperiencesPage'
 import { ArticlesPage } from './components/admin/ArticlesPage'
 import { MessagesPage } from './components/admin/MessagesPage'
 
+import { AnalyticsPage } from './components/admin/AnalyticsPage'
+
 export default function Admin() {
   return (
     <AuthGuard>
@@ -19,6 +21,7 @@ export default function Admin() {
           <Route path="experiences" element={<ExperiencesPage />} />
           <Route path="articles" element={<ArticlesPage />} />
           <Route path="messages" element={<MessagesPage />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="*" element={<Navigate to="/admin" replace />} />
         </Routes>
       </AdminLayout>

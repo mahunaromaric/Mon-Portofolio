@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../supabase/client'
+import { uploadImage } from '../../supabase/storage'
 import { C } from '../../constants'
 import type { Database } from '../../supabase/schema'
 
@@ -10,6 +11,8 @@ export function ArticlesPage() {
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState<number | 'new' | null>(null)
   const [form, setForm] = useState({ title: '', slug: '', excerpt: '', content: '', tags: '' })
+  const [coverFile, setCoverFile] = useState<File | null>(null)
+  const [coverPreview, setCoverPreview] = useState<string | null>(null)
 
   const load = async () => {
     if (!supabase) return
@@ -22,9 +25,15 @@ export function ArticlesPage() {
 
   const save = async () => {
     if (!supabase) return
+    let coverUrl: string | null = null
+    if (coverFile) {
+      const ext = coverFile.name.split('.').pop()
+      coverUrl = await uploadImage(coverFile, `articles/${Date.now()}.${ext}`)
+    }
     const payload = {
       title: form.title, slug: form.slug, excerpt: form.excerpt, content: form.content,
       tags: form.tags.split(',').map(s => s.trim()).filter(Boolean),
+      ...(coverUrl ? { cover_url: coverUrl } : {}),
       published: true,
     }
     if (editing === 'new') {
@@ -32,9 +41,15 @@ export function ArticlesPage() {
     } else {
       await supabase.from('articles').update(payload).eq('id', editing!)
     }
-    setEditing(null)
-    setForm({ title: '', slug: '', excerpt: '', content: '', tags: '' })
+    setEditing(null); setForm({ title: '', slug: '', excerpt: '', content: '', tags: '' }); setCoverFile(null); setCoverPreview(null)
     load()
+  }
+
+  const openEdit = (a: Article) => {
+    setEditing(a.id)
+    setForm({ title: a.title, slug: a.slug, excerpt: a.excerpt, content: a.content, tags: a.tags.join(', ') })
+    setCoverPreview(a.cover_url)
+    setCoverFile(null)
   }
 
   const remove = async (id: number) => {
@@ -55,7 +70,7 @@ export function ArticlesPage() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 800, letterSpacing: '-0.04em', color: C.ink }}>Articles</h1>
-        <button onClick={() => { setEditing('new'); setForm({ title: '', slug: '', excerpt: '', content: '', tags: '' }) }}
+        <button onClick={() => { setEditing('new'); setForm({ title: '', slug: '', excerpt: '', content: '', tags: '' }); setCoverFile(null); setCoverPreview(null) }}
           style={{ padding: '8px 16px', background: C.blue, color: '#fff', border: 'none', borderRadius: 8, fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Nouveau</button>
       </div>
 
@@ -81,6 +96,14 @@ export function ArticlesPage() {
             <input value={form.tags} onChange={e => setForm(p => ({ ...p, tags: e.target.value }))} placeholder="React, JavaScript, ..."
               style={{ width: '100%', padding: '10px 12px', borderRadius: 8, border: `1px solid ${C.border}`, fontFamily: 'var(--font-sans)', fontSize: 13, outline: 'none' }} />
           </div>
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 600, color: C.ink2, display: 'block', marginBottom: 4 }}>Image de couverture</label>
+            <input type="file" accept="image/*" onChange={e => {
+              const f = e.target.files?.[0]
+              if (f) { setCoverFile(f); setCoverPreview(URL.createObjectURL(f)) }
+            }} style={{ fontFamily: 'var(--font-sans)', fontSize: 12 }} />
+            {coverPreview && <img src={coverPreview} alt="" style={{ width: 160, height: 90, objectFit: 'cover', borderRadius: 8, marginTop: 8 }} />}
+          </div>
           <div style={{ display: 'flex', gap: 8, marginTop: '1rem' }}>
             <button onClick={save} style={{ padding: '8px 20px', background: C.ink, color: '#fff', border: 'none', borderRadius: 8, fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Enregistrer</button>
             <button onClick={() => setEditing(null)} style={{ padding: '8px 20px', background: 'transparent', color: C.muted, border: `1px solid ${C.border}`, borderRadius: 8, fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
@@ -99,7 +122,7 @@ export function ArticlesPage() {
               <input type="checkbox" checked={a.published} onChange={e => toggle(a.id, e.target.checked)} />
               <span style={{ fontFamily: 'var(--font-sub)', fontSize: 12, color: C.muted }}>Publié</span>
             </label>
-            <button onClick={() => { setEditing(a.id); setForm({ title: a.title, slug: a.slug, excerpt: a.excerpt, content: a.content, tags: a.tags.join(', ') }) }}
+            <button onClick={() => openEdit(a)}
               style={{ padding: '5px 12px', background: 'transparent', color: C.blue, border: `1px solid ${C.blue}40`, borderRadius: 6, fontFamily: 'var(--font-sub)', fontSize: 12, cursor: 'pointer' }}>Modifier</button>
             <button onClick={() => remove(a.id)}
               style={{ padding: '5px 12px', background: 'transparent', color: '#DC2626', border: '1px solid #FCA5A5', borderRadius: 6, fontFamily: 'var(--font-sub)', fontSize: 12, cursor: 'pointer' }}>Suppr.</button>

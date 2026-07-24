@@ -7,8 +7,9 @@ const navItems = [
   { path: '/admin/projects', label: 'Projets', icon: '📁' },
   { path: '/admin/skills', label: 'Compétences', icon: '⚡' },
   { path: '/admin/experiences', label: 'Expériences', icon: '📅' },
-  { path: '/admin/messages', label: 'Messages', icon: '✉️' },
   { path: '/admin/articles', label: 'Articles', icon: '📝' },
+  { path: '/admin/messages', label: 'Messages', icon: '✉️' },
+  { path: '/admin/analytics', label: 'Analytics', icon: '📈' },
 ]
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {

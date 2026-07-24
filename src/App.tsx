@@ -8,6 +8,7 @@ import { Projects } from './components/Projects'
 import { Process } from './components/Process'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { supabase } from './supabase/client'
 
 export default function App() {
   useEffect(() => {
@@ -15,6 +16,20 @@ export default function App() {
     link.rel = 'stylesheet'
     link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..500&family=Manrope:wght@400..700&family=Plus+Jakarta+Sans:wght@400..800&family=Sora:wght@400..800&display=optional'
     document.head.appendChild(link)
+  }, [])
+
+  useEffect(() => {
+    if (!supabase) return
+    const today = new Date().toISOString().slice(0, 10)
+    const path = window.location.pathname
+    supabase.from('page_views').select('id, count').eq('path', path).eq('date', today).maybeSingle().then(({ data }) => {
+      if (!supabase) return
+      if (data) {
+        supabase.from('page_views').update({ count: data.count + 1 }).eq('id', data.id)
+      } else {
+        supabase.from('page_views').insert({ path, date: today, count: 1 })
+      }
+    })
   }, [])
 
   return (
