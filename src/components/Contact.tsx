@@ -105,18 +105,13 @@ export function Contact() {
                     subject: form.subject,
                     message: form.message,
                   })
-                  if (error) {
-                    console.error(error)
-                    alert("Erreur lors de l'envoi. Réessaie ou écris-moi directement sur WhatsApp.")
-                    setSending(false)
-                    return
-                  }
                   setSending(false)
                   const text = encodeURIComponent(
                     `*Nouveau message du portfolio*\n\n*Nom :* ${form.name}\n*Email :* ${form.email}\n*Sujet :* ${form.subject}\n\n*Message :*\n${form.message}`
                   )
                   window.open(`https://wa.me/22961642237?text=${text}`, '_blank')
                   setForm({ name: '', email: '', subject: '', message: '' })
+                  if (error) console.error('Supabase insert failed (WhatsApp opened anyway):', error)
                 }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
                     <div>
