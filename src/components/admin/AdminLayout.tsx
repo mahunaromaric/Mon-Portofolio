@@ -33,11 +33,10 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#F8F7F4' }}>
 
-      {/* Sidebar desktop */}
-      <aside className="admin-sidebar" style={{
+      {/* Sidebar */}
+      <aside className={`admin-sidebar${sidebarOpen ? ' open' : ''}`} style={{
         width: 240, background: C.ink, display: 'flex', flexDirection: 'column', flexShrink: 0,
         position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 100,
-        transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
         transition: 'transform 0.25s ease',
       }}>
         <div style={{ padding: '1.5rem', borderBottom: '1px solid #1E293B' }}>

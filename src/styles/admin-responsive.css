@@ -1,13 +1,21 @@
-/* Admin responsive */
+/* Admin layout */
+.admin-main {
+  margin-left: 240px;
+}
+
+/* Sidebar visible by default (desktop) */
+.admin-sidebar {
+  transform: translateX(0);
+}
+
+/* Mobile overrides */
 @media (max-width: 768px) {
   .admin-sidebar {
     width: 260px !important;
-  }
-  .admin-sidebar {
     transform: translateX(-100%);
   }
   .admin-sidebar.open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
   .admin-menu-btn {
     display: flex !important;
