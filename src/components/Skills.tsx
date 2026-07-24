@@ -1,9 +1,10 @@
 import { C, useInView } from '../constants'
 import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
-import { skillCategories } from '../data'
+import { useSkills } from '../data'
 
 export function Skills() {
+  const { skills: skillCategories } = useSkills()
   const { ref, inView } = useInView()
 
   return (

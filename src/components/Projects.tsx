@@ -3,7 +3,7 @@ import { C, useInView, type Project } from '../constants'
 import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
 import { Tag } from './ui/Tag'
-import { projects } from '../data'
+import { useProjects } from '../data'
 import ctaasImg from '../img/ctaas.webp'
 import bibliofabImg from '../img/bibliofab.webp'
 import beninImg from '../img/benin.webp'
@@ -107,6 +107,7 @@ function ProjectMarquee() {
 }
 
 export function Projects() {
+  const { projects } = useProjects()
   return (
     <section id="projects" style={{ padding: '7rem 0', background: C.white }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 2rem' }}>

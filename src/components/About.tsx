@@ -3,9 +3,10 @@ import { C, useInView } from '../constants'
 import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
 import { Btn } from './ui/Btn'
-import { timeline } from '../data'
+import { useExperiences } from '../data'
 
 export function About() {
+  const { timeline } = useExperiences()
   const { ref, inView } = useInView()
   return (
     <section id="about" style={{ padding: '7rem 0', background: C.white }}>
