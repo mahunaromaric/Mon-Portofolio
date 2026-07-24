@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ArrowRight, CheckCircle2, Download, GitBranch, Globe, Mail, MapPin } from 'lucide-react'
 import { C, useInView } from '../constants'
 import { supabase } from '../supabase/client'
+import { trackDownload } from '../supabase/track'
 import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
 
@@ -71,6 +72,7 @@ export function Contact() {
                   { icon: <Download size={14} />, label: 'CV', href: '/cv.pdf' },
                 ].map(s => (
                   <a key={s.label} href={s.href}
+                    onClick={s.label === 'CV' ? () => { trackDownload('cv.pdf') } : undefined}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: 6,
                       padding: '14px 18px', borderRadius: 10,

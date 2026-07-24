@@ -210,6 +210,27 @@ export interface Database {
         }
         Relationships: []
       }
+      downloads: {
+        Row: {
+          id: number
+          file: string
+          date: string
+          count: number
+        }
+        Insert: {
+          id?: never
+          file: string
+          date?: string
+          count?: number
+        }
+        Update: {
+          id?: never
+          file?: string
+          date?: string
+          count?: number
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>

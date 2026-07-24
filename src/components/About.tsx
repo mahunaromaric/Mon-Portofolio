@@ -4,6 +4,7 @@ import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
 import { Btn } from './ui/Btn'
 import { useExperiences } from '../data'
+import { trackDownload } from '../supabase/track'
 
 export function About() {
   const { timeline } = useExperiences()
@@ -26,7 +27,7 @@ export function About() {
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: '2rem', flexWrap: 'wrap' }}>
               <Btn href="#contact">Discutons <ArrowRight size={13} /></Btn>
-              <Btn href="/cv.pdf" variant="outline"><Download size={13} /> Télécharger le CV</Btn>
+              <Btn href="/cv.pdf" variant="outline" onClick={() => trackDownload('cv.pdf')}><Download size={13} /> Télécharger le CV</Btn>
             </div>
           </div>
 

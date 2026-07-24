@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { C } from '../../constants'
 
-export function Btn({ children, href, variant = 'primary', small }: { children: React.ReactNode; href?: string; variant?: 'primary' | 'ghost' | 'outline'; small?: boolean }) {
+export function Btn({ children, href, variant = 'primary', small, onClick }: { children: React.ReactNode; href?: string; variant?: 'primary' | 'ghost' | 'outline'; small?: boolean; onClick?: () => void }) {
   const [hov, setHov] = useState(false)
   const base: React.CSSProperties = {
     display: 'inline-flex',
@@ -26,6 +26,7 @@ export function Btn({ children, href, variant = 'primary', small }: { children: 
   return (
     <a
       href={href || '#'}
+      onClick={onClick}
       style={{ ...base, ...styles[variant] }}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
