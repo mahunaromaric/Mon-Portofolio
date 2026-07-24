@@ -76,7 +76,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       )}
 
       {/* Contenu principal */}
-      <div style={{ flex: 1, marginLeft: 0, minWidth: 0 }} className="admin-main">
+      <div style={{ flex: 1, minWidth: 0 }} className="admin-main">
 
         {/* Header bar */}
         <header style={{
