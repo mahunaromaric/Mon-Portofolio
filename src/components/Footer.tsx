@@ -6,7 +6,13 @@ export function Footer() {
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 2rem 2rem' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: '3rem', marginBottom: '3rem' }}>
           <div>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.04em' }}>Mahuna</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <svg width="28" height="28" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 110V38L45 38C52 38 57 43 57 50C57 55 53 59 49 61L70 24L91 61C87 59 83 55 83 50C83 43 88 38 95 38L115 38V110" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M70 24L48 78M70 24L92 78" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.04em' }}>Mahuna</span>
+            </div>
             <p style={{ fontFamily: 'var(--font-sub)', fontSize: 14, lineHeight: 1.7, marginTop: '0.75rem', color: '#64748B' }}>
               Développeur Full Stack basé à Cotonou. Je conçois et développe des solutions numériques utiles, de l'idée à la mise en production.
             </p>
