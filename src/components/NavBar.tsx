@@ -3,8 +3,8 @@ import { ArrowRight, Menu, X } from 'lucide-react'
 import { C } from '../constants'
 import { NavLink } from './ui/NavLink'
 
-const links = ['Accueil', 'À propos', 'Compétences', 'Projets', 'Contact']
-const hrefs = ['#hero', '#about', '#skills', '#projects', '#contact']
+const links = ['Accueil', 'À propos', 'Compétences', 'Projets']
+const hrefs = ['#hero', '#about', '#skills', '#projects']
 
 export function NavBar() {
   const [open, setOpen] = useState(false)
