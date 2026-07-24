@@ -60,7 +60,7 @@ export function Footer() {
                 <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ color: '#475569', flexShrink: 0 }}>{item.icon}</span>
                   {item.href
-                    ? <a href={item.href} style={{ fontFamily: 'var(--font-sub)', fontSize: 13.5, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s', padding: '15px 0', display: 'inline-block' }}
+                    ? <a href={item.href} style={{ fontFamily: 'var(--font-sub)', fontSize: 13.5, color: '#64748B', textDecoration: 'none', transition: 'color 0.15s', padding: '15px 0', display: 'inline-block', minWidth: 48 }}
                         onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#fff'}
                         onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#64748B'}>{item.label}</a>
                     : <span style={{ fontFamily: 'var(--font-sub)', fontSize: 13.5, color: '#64748B' }}>{item.label}</span>
