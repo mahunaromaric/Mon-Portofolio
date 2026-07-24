@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { ArrowRight, CheckCircle2, Download, GitBranch, GitCommitHorizontal, Globe, Mail, MapPin } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Download, GitBranch, Globe, Mail, MapPin } from 'lucide-react'
 import { C, useInView } from '../constants'
+import { supabase } from '../supabase/client'
 import { Label } from './ui/Label'
 import { Heading } from './ui/Heading'
 
 export function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
   const { ref, inView } = useInView()
 
   const inputStyle: React.CSSProperties = {
@@ -44,7 +46,7 @@ export function Contact() {
                 {[
                   {icon: <Mail size={16} />, label: 'Email', value: 'romamahuna@gmail.com', href: 'mailto:romamahuna@gmail.com'},
                   {icon: <MapPin size={16} />, label: 'Localisation', value: 'Cotonou, Bénin'},
-                  {icon: <GitCommitHorizontal size={16} />, label: 'GitHub', value: 'github.com/mahunaromaric', href: 'https://github.com/mahunaromaric'},
+                  {icon: <GitBranch size={16} />, label: 'GitHub', value: 'github.com/mahunaromaric', href: 'https://github.com/mahunaromaric'},
                   {icon: <Globe size={16} />, label: 'LinkedIn', value: 'linkedin.com/in/romaric-gbenou-174a853b5', href: 'https://linkedin.com/in/romaric-gbenou-174a853b5'},
                 ].map(item => (
                   <div key={item.label} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
@@ -112,8 +114,27 @@ export function Contact() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={e => {
+                <form onSubmit={async e => {
                   e.preventDefault()
+                  setSending(true)
+                  if (!supabase) {
+                    alert("Supabase n'est pas configuré. Configure VITE_SUPABASE_URL et VITE_SUPABASE_ANON_KEY.")
+                    setSending(false)
+                    return
+                  }
+                  const { error } = await supabase.from('messages').insert({
+                    name: form.name,
+                    email: form.email,
+                    subject: form.subject,
+                    message: form.message,
+                  })
+                  if (error) {
+                    console.error(error)
+                    alert("Erreur lors de l'envoi. Réessaie ou écris-moi directement sur WhatsApp.")
+                    setSending(false)
+                    return
+                  }
+                  setSending(false)
                   setSent(true)
                 }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                    <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
@@ -150,7 +171,7 @@ export function Contact() {
                   }}
                     onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = C.blue; el.style.transform = 'translateY(-1px)' }}
                     onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = C.ink; el.style.transform = 'none' }}>
-                    Envoyer <ArrowRight size={15} />
+                    Envoyer {sending ? '...' : <ArrowRight size={15} />}
                   </button>
                 </form>
               )}
