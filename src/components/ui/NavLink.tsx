@@ -9,7 +9,7 @@ export function NavLink({ href, children }: { href: string; children: React.Reac
         fontFamily: 'var(--font-display)', fontSize: 13.5, fontWeight: 500,
         color: hov ? C.ink : C.muted, textDecoration: 'none',
         transition: 'color 0.15s', letterSpacing: '-0.01em',
-        position: 'relative',
+        position: 'relative', padding: '12px 0',
       }}>
       {children}
       <span style={{

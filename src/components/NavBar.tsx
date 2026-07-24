@@ -38,7 +38,7 @@ export function NavBar() {
           : '0 2px 12px rgba(0,0,0,0.04)',
         transition: 'all 0.3s',
       }}>
-        <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, minHeight: 48 }}>
           <svg width="22" height="22" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M25 110V38L45 38C52 38 57 43 57 50C57 55 53 59 49 61L70 24L91 61C87 59 83 55 83 50C83 43 88 38 95 38L115 38V110" stroke="#1a3a6b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M70 24L48 78M70 24L92 78" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,7 +57,7 @@ export function NavBar() {
           <button style={{
             fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700,
             letterSpacing: '-0.02em', background: C.ink, color: '#fff',
-            border: 'none', borderRadius: 100, padding: '8px 18px',
+            border: 'none', borderRadius: 100, padding: '14px 18px',
             cursor: 'pointer', transition: 'all 0.18s',
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}
@@ -109,7 +109,7 @@ export function NavBar() {
             <button style={{
               fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700,
               background: C.ink, color: '#fff',
-              border: 'none', borderRadius: 100, padding: '10px 22px',
+              border: 'none', borderRadius: 100, padding: '14px 22px',
               cursor: 'pointer', width: '100%',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}

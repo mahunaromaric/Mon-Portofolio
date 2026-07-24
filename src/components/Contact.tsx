@@ -52,7 +52,7 @@ export function Contact() {
                     <div>
                       <div style={{ fontFamily: 'var(--font-display)', fontSize: 12.5, fontWeight: 600, color: C.ink, marginBottom: 1 }}>{item.label}</div>
                       {item.href
-                        ? <a href={item.href} style={{ fontFamily: 'var(--font-sub)', fontSize: 13.5, color: C.muted, textDecoration: 'none', transition: 'color 0.15s' }}
+                        ? <a href={item.href} style={{ fontFamily: 'var(--font-sub)', fontSize: 13.5, color: C.muted, textDecoration: 'none', transition: 'color 0.15s', padding: '15px 0', display: 'inline-block' }}
                             onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = C.blue}
                             onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = C.muted}>{item.value}</a>
                         : <span style={{ fontFamily: 'var(--font-sub)', fontSize: 13.5, color: C.muted }}>{item.value}</span>
@@ -71,7 +71,7 @@ export function Contact() {
                   <a key={s.label} href={s.href}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: 6,
-                      padding: '8px 16px', borderRadius: 10,
+                      padding: '14px 18px', borderRadius: 10,
                       background: '#F1F5F9', color: C.ink2,
                       fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600,
                       textDecoration: 'none', transition: 'all 0.18s',
@@ -144,7 +144,7 @@ export function Contact() {
                   </div>
                   <button type="submit" style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                    padding: '12px 24px', background: C.ink, color: '#fff', border: 'none', borderRadius: 12,
+                    padding: '14px 28px', background: C.ink, color: '#fff', border: 'none', borderRadius: 12,
                     cursor: 'pointer', fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700,
                     transition: 'all 0.18s',
                   }}

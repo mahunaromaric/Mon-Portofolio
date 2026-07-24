@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <>
-      <NavBar />
+      <header><NavBar /></header>
       <main>
         <Hero />
         <About />
