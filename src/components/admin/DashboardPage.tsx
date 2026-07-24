@@ -14,17 +14,17 @@ export function DashboardPage() {
     const today = new Date().toISOString().slice(0, 10)
 
     Promise.all([
-      supabase.from('page_views').select('count').eq('date', today).maybeSingle(),
+      supabase.from('page_views').select('count').eq('date', today),
       supabase.from('page_views').select('*').order('date', { ascending: false }).limit(30),
-      supabase.from('downloads').select('count').maybeSingle(),
+      supabase.from('downloads').select('*'),
       supabase.from('downloads').select('*').order('date', { ascending: false }).limit(30),
       supabase.from('messages').select('id', { count: 'exact', head: true }),
       supabase.from('messages').select('id', { count: 'exact', head: true }).eq('read', false),
-    ]).then(([vToday, vHist, dTotal, dHist, msg, unr]) => {
+    ]).then(([vToday, vHist, dAll, dHist, msg, unr]) => {
       setStats({
-        viewsToday: (vToday.data as any)?.count ?? 0,
+        viewsToday: (vToday.data as any[])?.reduce((s: number, r: any) => s + r.count, 0) ?? 0,
         views: vHist.data?.reduce((s: number, r: any) => s + r.count, 0) ?? 0,
-        downloads: (dTotal.data as any)?.count ?? 0,
+        downloads: (dAll.data as any[])?.reduce((s: number, r: any) => s + r.count, 0) ?? 0,
         messages: msg.count ?? 0,
         unread: unr.count ?? 0,
       })
