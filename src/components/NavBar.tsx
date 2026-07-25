@@ -37,17 +37,17 @@ export function NavBar() {
             <NavLink key={l} href={hrefs[i]}>{l}</NavLink>
           ))}
           <button style={{
-            fontFamily: 'var(--font-display)', fontSize: 12.5, fontWeight: 700,
+            fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700,
             textTransform: 'uppercase', letterSpacing: '0.05em', background: C.ink, color: '#fff',
-            border: 'none', borderRadius: 100, padding: '12px 16px',
-            cursor: 'pointer', transition: 'all 0.18s', minHeight: 48,
+            border: 'none', borderRadius: 100, padding: '9px 16px',
+            cursor: 'pointer', transition: 'all 0.18s',
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}
             onMouseEnter={e => { e.currentTarget.style.background = C.blue; e.currentTarget.style.transform = 'translateY(-1px)' }}
             onMouseLeave={e => { e.currentTarget.style.background = C.ink; e.currentTarget.style.transform = 'none' }}
             onClick={() => window.location.href = '#contact'}
           >
-            Me contacter <ArrowRight size={12} />
+            Me contacter <ArrowRight size={10} />
           </button>
         </div>
 
@@ -86,9 +86,9 @@ export function NavBar() {
           ))}
           <div style={{ marginTop: '0.75rem' }}>
             <button style={{
-              fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700,
+              fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700,
               background: C.ink, color: '#fff',
-              border: 'none', borderRadius: 100, padding: '14px 22px',
+              border: 'none', borderRadius: 100, padding: '12px 22px',
               cursor: 'pointer', width: '100%',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}
