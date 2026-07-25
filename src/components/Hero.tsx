@@ -1,19 +1,18 @@
 import { ArrowRight, MapPin } from 'lucide-react'
-import { C, useInView } from '../constants'
+import { C } from '../constants'
 import { Btn } from './ui/Btn'
 import { Tag } from './ui/Tag'
 import profilImg from '../img/profil.webp'
 
 const techs = ['React', 'Next.js', 'TypeScript', 'Laravel', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Figma']
 const stats = [
-  { v: '3+', l: 'ANS' },
-  { v: '5+', l: 'PROJETS' },
-  { v: '4+', l: 'OUTILS' },
-  { v: '∞', l: 'VEILLE' },
+  { v: '3+', l: 'Années de pratique' },
+  { v: '5+', l: 'Projets développés' },
+  { v: '4+', l: 'Technologies maîtrisées' },
+  { v: '∞', l: 'Apprentissage continu' },
 ]
 
 export function Hero() {
-  const { ref, inView } = useInView()
   return (
     <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: 64, background: C.cream }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 2rem', width: '100%' }}>
@@ -39,21 +38,11 @@ export function Hero() {
               <Btn href="#projects">Voir mes projets <ArrowRight size={14} /></Btn>
             </div>
 
-            <div ref={ref} style={{
-              display: 'flex', gap: '2.5rem', flexWrap: 'wrap', paddingTop: '1.5rem',
-              opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(16px)',
-              transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)',
-            }}>
-              {stats.map((s, i) => (
-                <div key={s.l} style={{
-                  opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(10px)',
-                  transition: `all 0.5s cubic-bezier(0.4,0,0.2,1) ${i * 0.1}s`,
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: C.blue, flexShrink: 0 }} />
-                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, letterSpacing: '-0.04em', color: C.ink, lineHeight: 1 }}>{s.v}</span>
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: 10.5, color: C.slate, marginTop: 5, fontWeight: 600, letterSpacing: '0.08em', marginLeft: 14 }}>{s.l}</div>
+            <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', paddingTop: '2rem', borderTop: `1px solid ${C.border}` }}>
+              {stats.map(s => (
+                <div key={s.l}>
+                  <div style={{ fontFamily: 'Caveat, cursive', fontSize: 30, fontWeight: 700, letterSpacing: '-0.02em', color: C.ink, lineHeight: 1 }}>{s.v}</div>
+                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: 12, color: C.slate, marginTop: 5, fontWeight: 500 }}>{s.l}</div>
                 </div>
               ))}
             </div>
