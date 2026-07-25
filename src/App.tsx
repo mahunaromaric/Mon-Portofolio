@@ -22,8 +22,9 @@ export default function App() {
     if (!supabase) return
     const today = new Date().toISOString().slice(0, 10)
     const path = window.location.pathname
-    supabase.from('page_views').select('id, count').eq('path', path).eq('date', today).maybeSingle().then(({ data }) => {
+    supabase.from('page_views').select('id, count').eq('path', path).eq('date', today).maybeSingle().then(({ data, error }) => {
       if (!supabase) return
+      if (error) { console.error('page_views select error:', error); return }
       if (data) {
         supabase.from('page_views').update({ count: data.count + 1 }).eq('id', data.id)
       } else {

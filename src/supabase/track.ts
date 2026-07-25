@@ -3,7 +3,8 @@ import { supabase } from './client'
 export async function trackDownload(file: string) {
   if (!supabase) return
   const today = new Date().toISOString().slice(0, 10)
-  const { data } = await supabase.from('downloads').select('id, count').eq('file', file).eq('date', today).maybeSingle()
+  const { data, error } = await supabase.from('downloads').select('id, count').eq('file', file).eq('date', today).maybeSingle()
+  if (error) { console.error('downloads select error:', error); return }
   if (data) {
     await supabase.from('downloads').update({ count: data.count + 1 }).eq('id', data.id)
   } else {
