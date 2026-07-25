@@ -17,17 +17,17 @@ export function NavBar() {
 
   return (
     <nav style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+      position: 'fixed', top: 24, left: 0, right: 0, zIndex: 100,
       display: 'flex', justifyContent: 'center',
-      padding: '12px 1rem 0',
       pointerEvents: 'none',
     }}>
       <div style={{
         pointerEvents: 'auto',
         width: '100%',
         maxWidth: 1100,
+        margin: '0 1rem',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '8px 20px',
+        padding: '10px 20px',
         background: scrolled ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
@@ -55,10 +55,10 @@ export function NavBar() {
             <NavLink key={l} href={hrefs[i]}>{l}</NavLink>
           ))}
           <button style={{
-            fontFamily: 'var(--font-display)', fontSize: 12.5, fontWeight: 700,
-            textTransform: 'uppercase', letterSpacing: '0.05em', background: C.ink, color: '#fff',
-            border: 'none', borderRadius: 100, padding: '12px 16px',
-            cursor: 'pointer', transition: 'all 0.18s', minHeight: 48,
+            fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700,
+            letterSpacing: '-0.02em', background: C.ink, color: '#fff',
+            border: 'none', borderRadius: 100, padding: '14px 18px',
+            cursor: 'pointer', transition: 'all 0.18s',
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}
             onMouseEnter={e => { e.currentTarget.style.background = C.blue; e.currentTarget.style.transform = 'translateY(-1px)' }}
@@ -82,23 +82,22 @@ export function NavBar() {
         </button>
       </div>
 
-        {open && (
+      {open && (
         <div style={{
           pointerEvents: 'auto',
-          position: 'fixed', top: 64, left: '1rem', right: '1rem',
+          position: 'fixed', top: 80, left: '1rem', right: '1rem',
           maxWidth: 1100, margin: '0 auto',
           background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)',
           border: `1px solid ${C.border}`,
           borderRadius: 20,
-          padding: '0.75rem 1.25rem',
+          padding: '1rem 1.5rem',
           boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
         }}>
           {links.map((l, i) => (
             <a key={l} href={hrefs[i]} onClick={() => setOpen(false)}
               style={{
-                display: 'block', padding: '10px 0',
-                fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600,
-                textTransform: 'uppercase', letterSpacing: '0.05em',
+                display: 'block', padding: '12px 0',
+                fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 600,
                 color: C.ink, textDecoration: 'none',
                 borderBottom: `1px solid ${C.borderLight}`,
               }}
@@ -106,12 +105,11 @@ export function NavBar() {
               {l}
             </a>
           ))}
-          <div style={{ marginTop: '0.5rem' }}>
+          <div style={{ marginTop: '0.75rem' }}>
             <button style={{
-              fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700,
-              textTransform: 'uppercase', letterSpacing: '0.05em',
+              fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700,
               background: C.ink, color: '#fff',
-              border: 'none', borderRadius: 100, padding: '12px 22px',
+              border: 'none', borderRadius: 100, padding: '14px 22px',
               cursor: 'pointer', width: '100%',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}

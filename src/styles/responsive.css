@@ -23,8 +23,6 @@
   .marquee-item { width: 280px !important; height: 180px !important; }
   .process-grid { grid-template-columns: 1fr !important; }
   .process-grid > div { padding: 1.25rem !important; }
-  nav > div { padding: 6px 14px !important; border-radius: 60px !important; }
-  nav > div > a > span { font-size: 16px !important; }
 }
 
 @media (max-width: 480px) {
