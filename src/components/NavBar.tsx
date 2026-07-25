@@ -75,9 +75,10 @@ export function NavBar() {
           {links.map((l, i) => (
             <a key={l} href={hrefs[i]} onClick={() => setOpen(false)}
               style={{
-                display: 'block', padding: '12px 0',
-                fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 600,
-                color: C.ink, textDecoration: 'none',
+                display: 'block', padding: '10px 0',
+                fontFamily: 'var(--font-sub)', fontSize: 13, fontWeight: 600,
+                color: C.ink, textDecoration: 'none', textTransform: 'uppercase',
+                letterSpacing: '0.05em',
                 borderBottom: `1px solid ${C.borderLight}`,
               }}
             >
@@ -86,9 +87,10 @@ export function NavBar() {
           ))}
           <div style={{ marginTop: '0.75rem' }}>
             <button style={{
-              fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700,
+              fontFamily: 'var(--font-sub)', fontSize: 13, fontWeight: 700,
+              textTransform: 'uppercase', letterSpacing: '0.05em',
               background: C.ink, color: '#fff',
-              border: 'none', borderRadius: 100, padding: '12px 22px',
+              border: 'none', borderRadius: 0, padding: '12px 22px',
               cursor: 'pointer', width: '100%',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}
