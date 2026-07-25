@@ -6,7 +6,7 @@ import { processSteps } from '../data'
 export function Process() {
   const { ref, inView } = useInView()
   return (
-    <section style={{ padding: '7rem 0', background: '#111827', overflow: 'hidden' }}>
+    <section id="process" style={{ padding: '7rem 0', background: '#111827', overflow: 'hidden' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 2rem' }}>
         <Label light>Processus</Label>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1rem' }}>

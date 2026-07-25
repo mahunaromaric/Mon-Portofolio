@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => {
     const link = document.createElement('link')
     link.rel = 'stylesheet'
-    link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..500&family=Manrope:wght@400..700&family=Plus+Jakarta+Sans:wght@400..800&family=Sora:wght@400..800&display=optional'
+    link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..500&family=Manrope:wght@400..700&family=Plus+Jakarta+Sans:wght@400..800&family=Sora:wght@400..800&family=Caveat:wght@500..700&display=optional'
     document.head.appendChild(link)
   }, [])
 

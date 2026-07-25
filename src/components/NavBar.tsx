@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 import { C } from '../constants'
 import { NavLink } from './ui/NavLink'
 
-const links = ['Accueil', 'À propos', 'Compétences', 'Projets']
-const hrefs = ['#hero', '#about', '#skills', '#projects']
+const links = ['Accueil', 'À propos', 'Compétences', 'Projets', 'Processus']
+const hrefs = ['#hero', '#about', '#skills', '#projects', '#process']
 
 export function NavBar() {
   const [open, setOpen] = useState(false)
@@ -28,13 +28,26 @@ export function NavBar() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         height: 64,
       }}>
-        <a href="#hero" style={{ textDecoration: 'none', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 18, color: C.ink, letterSpacing: '-0.03em' }}>
+        <a href="#hero" style={{ textDecoration: 'none', fontFamily: 'Caveat, cursive', fontWeight: 600, fontSize: 24, color: C.ink, lineHeight: 1 }}>
           Mahuna
         </a>
-        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           {links.map((l, i) => (
             <NavLink key={l} href={hrefs[i]}>{l}</NavLink>
           ))}
+          <button style={{
+            fontFamily: 'var(--font-display)', fontSize: 12.5, fontWeight: 700,
+            textTransform: 'uppercase', letterSpacing: '0.05em', background: C.ink, color: '#fff',
+            border: 'none', borderRadius: 100, padding: '12px 16px',
+            cursor: 'pointer', transition: 'all 0.18s', minHeight: 48,
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = C.blue; e.currentTarget.style.transform = 'translateY(-1px)' }}
+            onMouseLeave={e => { e.currentTarget.style.background = C.ink; e.currentTarget.style.transform = 'none' }}
+            onClick={() => window.location.href = '#contact'}
+          >
+            Me contacter <ArrowRight size={12} />
+          </button>
         </div>
 
         <button
@@ -70,6 +83,19 @@ export function NavBar() {
               {l}
             </a>
           ))}
+          <div style={{ marginTop: '0.75rem' }}>
+            <button style={{
+              fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 700,
+              background: C.ink, color: '#fff',
+              border: 'none', borderRadius: 100, padding: '14px 22px',
+              cursor: 'pointer', width: '100%',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+            }}
+              onClick={() => { setOpen(false); window.location.href = '#contact' }}
+            >
+              Me contacter <ArrowRight size={13} />
+            </button>
+          </div>
         </div>
       )}
     </nav>
