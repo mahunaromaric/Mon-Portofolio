@@ -12,13 +12,6 @@ import { supabase } from './supabase/client'
 
 export default function App() {
   useEffect(() => {
-    const link = document.createElement('link')
-    link.rel = 'stylesheet'
-    link.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..500&family=Manrope:wght@400..700&family=Plus+Jakarta+Sans:wght@400..800&family=Sora:wght@400..800&display=optional'
-    document.head.appendChild(link)
-  }, [])
-
-  useEffect(() => {
     if (!supabase) return
     const today = new Date().toISOString().slice(0, 10)
     const path = window.location.pathname
