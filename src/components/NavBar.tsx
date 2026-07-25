@@ -32,14 +32,14 @@ export function NavBar() {
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 500, color: C.blue, opacity: 0.65 }}>~ $ </span>
           <span style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, fontSize: 24, color: C.ink, lineHeight: 1 }}>Mahuna</span>
         </a>
-        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
           {links.map((l, i) => (
             <NavLink key={l} href={hrefs[i]}>{l}</NavLink>
           ))}
           <button style={{
             fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700,
             textTransform: 'uppercase', letterSpacing: '0.05em', background: C.ink, color: '#fff',
-            border: 'none', borderRadius: 100, padding: '9px 16px',
+            border: 'none', borderRadius: 0, padding: '9px 16px',
             cursor: 'pointer', transition: 'all 0.18s',
             display: 'inline-flex', alignItems: 'center', gap: 6,
           }}
