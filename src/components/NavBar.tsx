@@ -28,8 +28,9 @@ export function NavBar() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         height: 64,
       }}>
-        <a href="#hero" style={{ textDecoration: 'none', fontFamily: 'Caveat, cursive', fontWeight: 600, fontSize: 24, color: C.ink, lineHeight: 1 }}>
-          Mahuna
+        <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 2 }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 500, color: C.blue, opacity: 0.65 }}>~ $ </span>
+          <span style={{ fontFamily: 'Caveat, cursive', fontWeight: 600, fontSize: 24, color: C.ink, lineHeight: 1 }}>Mahuna</span>
         </a>
         <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           {links.map((l, i) => (
