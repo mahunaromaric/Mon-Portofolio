@@ -25,9 +25,12 @@ export function NavBar() {
     }}>
       <div style={{
         maxWidth: 1280, margin: '0 auto', padding: '0 2rem',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         height: 64,
       }}>
+        <a href="#hero" style={{ textDecoration: 'none', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 18, color: C.ink, letterSpacing: '-0.03em' }}>
+          Mahuna
+        </a>
         <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           {links.map((l, i) => (
             <NavLink key={l} href={hrefs[i]}>{l}</NavLink>
