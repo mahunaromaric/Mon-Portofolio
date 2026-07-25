@@ -38,16 +38,11 @@ export function Hero() {
               <Btn href="#projects">Voir mes projets <ArrowRight size={14} /></Btn>
             </div>
 
-            <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap', paddingTop: '2rem', borderTop: `1px solid ${C.border}` }}>
-              {stats.map((s, i) => (
-                <div key={s.l} style={{
-                  flex: '1 1 auto', minWidth: 120,
-                  padding: '0 1.5rem',
-                  borderLeft: i > 0 ? `1px solid ${C.borderLight}` : 'none',
-                  textAlign: 'center',
-                }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, letterSpacing: '-0.04em', color: C.blue, lineHeight: 1.1 }}>{s.v}</div>
-                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: 11.5, color: C.slate, marginTop: 4, fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>{s.l}</div>
+            <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap', paddingTop: '2rem', borderTop: `1px solid ${C.border}` }}>
+              {stats.map(s => (
+                <div key={s.l}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 30, fontWeight: 800, letterSpacing: '-0.05em', color: C.ink, lineHeight: 1 }}>{s.v}</div>
+                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: 12, color: C.slate, marginTop: 5, fontWeight: 500 }}>{s.l}</div>
                 </div>
               ))}
             </div>
