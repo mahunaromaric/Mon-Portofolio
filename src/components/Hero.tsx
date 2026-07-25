@@ -14,7 +14,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: 72, background: C.cream }}>
+    <section id="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: 64, background: C.cream }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 2rem', width: '100%' }}>
         <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '5rem', alignItems: 'center' }}>
           <div>
