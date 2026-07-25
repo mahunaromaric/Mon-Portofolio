@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { C } from '../../constants'
 
-export function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+export function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
   const [hov, setHov] = useState(false)
   return (
-    <a href={href} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+    <a href={href} onClick={e => { if (onClick) { e.preventDefault(); onClick() } }} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         fontFamily: 'var(--font-display)', fontSize: 13.5, fontWeight: 500,
         color: hov ? C.ink : C.muted, textDecoration: 'none',

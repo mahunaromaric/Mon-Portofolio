@@ -52,7 +52,10 @@ export function NavBar() {
 
         <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           {links.map((l, i) => (
-            <NavLink key={l} href={hrefs[i]}>{l}</NavLink>
+            <NavLink key={l} href={hrefs[i]} onClick={() => {
+              document.getElementById(hrefs[i].slice(1))?.scrollIntoView({ behavior: 'smooth' })
+              history.replaceState(null, '', ' ')
+            }}>{l}</NavLink>
           ))}
           <button style={{
             fontFamily: 'var(--font-display)', fontSize: 12.5, fontWeight: 700,
@@ -63,7 +66,7 @@ export function NavBar() {
           }}
             onMouseEnter={e => { e.currentTarget.style.background = C.blue; e.currentTarget.style.transform = 'translateY(-1px)' }}
             onMouseLeave={e => { e.currentTarget.style.background = C.ink; e.currentTarget.style.transform = 'none' }}
-            onClick={() => window.location.href = '#contact'}
+            onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); history.replaceState(null, '', ' ') }}
           >
             Me contacter <ArrowRight size={12} />
           </button>
@@ -94,7 +97,7 @@ export function NavBar() {
           boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
         }}>
           {links.map((l, i) => (
-            <a key={l} href={hrefs[i]} onClick={() => setOpen(false)}
+            <a key={l} href={hrefs[i]} onClick={e => { e.preventDefault(); setOpen(false); document.getElementById(hrefs[i].slice(1))?.scrollIntoView({ behavior: 'smooth' }); history.replaceState(null, '', ' ') }}
               style={{
                 display: 'block', padding: '10px 0',
                 fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600,
@@ -115,7 +118,7 @@ export function NavBar() {
               cursor: 'pointer', width: '100%',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}
-              onClick={() => { setOpen(false); window.location.href = '#contact' }}
+              onClick={() => { setOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); history.replaceState(null, '', ' ') }}
             >
               Me contacter <ArrowRight size={13} />
             </button>
