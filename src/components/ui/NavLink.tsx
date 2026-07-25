@@ -6,9 +6,10 @@ export function NavLink({ href, children }: { href: string; children: React.Reac
   return (
     <a href={href} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        fontFamily: 'var(--font-sub)', fontSize: 14, fontWeight: 500,
+        fontFamily: 'var(--font-sub)', fontSize: 13, fontWeight: 600,
         color: hov ? C.ink : C.muted, textDecoration: 'none',
-        transition: 'color 0.15s', letterSpacing: 0,
+        textTransform: 'uppercase', letterSpacing: '0.05em',
+        transition: 'color 0.15s',
         position: 'relative', padding: '6px 0',
       }}>
       {children}
