@@ -51,6 +51,9 @@ export function AdminLogin() {
           </a>
         </nav>
       </form>
+      <footer style={{ fontFamily: 'var(--font-sub)', fontSize: 11, color: C.slate, marginTop: '2rem' }}>
+        Romaric Mahuna GBENOU &copy; {new Date().getFullYear()}
+      </footer>
     </main>
   )
 }
