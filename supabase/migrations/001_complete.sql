@@ -141,3 +141,17 @@ drop policy if exists "insertion downloads" on downloads;
 drop policy if exists "lecture downloads" on downloads;
 create policy "insertion downloads" on downloads for insert with check (true);
 create policy "lecture downloads" on downloads for select using (true);
+
+-- === Privilèges (requis pour éviter les erreurs 401 côté anon) ===
+
+grant select on projects to anon;
+grant select on skill_categories to anon;
+grant select on skills to anon;
+grant select on experiences to anon;
+grant select on articles to anon;
+grant select, insert, update on page_views to anon;
+grant select, insert, update on downloads to anon;
+grant insert on messages to anon;
+
+grant all on projects, skill_categories, skills, experiences, articles, messages to authenticated;
+grant all on page_views, downloads to authenticated;
